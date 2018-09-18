@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="36sp" />
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="1"
-                    android:onClick="on1"/>
+                    android:onClick="onNumberClick"/>
 
                 <Button
                     android:id="@+id/button2"
@@ -49,7 +49,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="2"
-                    android:onClick="on2" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/button3"
@@ -58,7 +58,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="3"
-                    android:onClick="on3" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/buttonMultiple"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="*"
-                    android:onClick="onMultiple" />
+                    android:onClick="onOperation" />
 
             </TableRow>
 
@@ -81,7 +81,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="4"
-                    android:onClick="on4" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/button5"
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="5"
-                    android:onClick="on5" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/button6"
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="6"
-                    android:onClick="on6" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/buttonDivide"
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="/"
-                    android:onClick="onDivide" />
+                    android:onClick="onOperation" />
             </TableRow>
 
             <TableRow
@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="7"
-                    android:onClick="on7" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/button8"
@@ -128,7 +128,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="8"
-                    android:onClick="on8" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/button9"
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="9"
-                    android:onClick="on9" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/buttonMinus"
@@ -145,7 +145,7 @@
                     android:layout_weight="1"
                     android:singleLine="false"
                     android:text="-"
-                    android:onClick="onMinus" />
+                    android:onClick="onOperation" />
             </TableRow>
 
             <TableRow
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0"
-                    android:onClick="on0" />
+                    android:onClick="onNumberClick" />
 
                 <Button
                     android:id="@+id/buttonDelete"
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="+"
-                    android:onClick="onPlus" />
+                    android:onClick="onOperation" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
