@@ -12,6 +12,9 @@ public class MainActivity extends AppCompatActivity {
     private double number;
     private char operation;
 
+    private double memoryNumber = 0;
+    private boolean isMemorySet = false;
+
     private void updateTextView() {
         TextView textView = findViewById(R.id.textView);
         textView.setText(this.inputText.toString());
@@ -30,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteNumber() {
-        this.inputText.deleteCharAt(this.inputText.length() - 1);
-        updateTextView();
+        if(inputText.length() > 0){
+            inputText.deleteCharAt(inputText.length() - 1);
+            updateTextView();
+        }
     }
 
     private void calculate() {
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView textView = findViewById(R.id.textView);
         textView.setText(String.valueOf(result));
+        inputText = new StringBuilder();
     }
 
     @Override
@@ -80,5 +86,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDelete(View view) {
         deleteNumber();
+    }
+
+    public void onButtonM(View view) {
+        TextView textView = findViewById(R.id.textView);
+        if(isMemorySet) {
+            inputText = new StringBuilder(String.valueOf(memoryNumber));
+            updateTextView();
+        } else {
+            memoryNumber = Double.valueOf(textView.getText().toString());
+            isMemorySet = true;
+        }
+    }
+
+    public void onButtonMC(View view) {
+        memoryNumber = 0;
+        isMemorySet = false;
     }
 }

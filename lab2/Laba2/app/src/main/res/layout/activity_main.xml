@@ -35,6 +35,25 @@
                 android:layout_height="match_parent" >
 
                 <Button
+                    android:id="@+id/buttonM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M"
+                    android:onClick="onButtonM" />
+
+                <Button
+                    android:id="@+id/buttonMC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MC"
+                    android:onClick="onButtonMC" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
                     android:id="@+id/button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
