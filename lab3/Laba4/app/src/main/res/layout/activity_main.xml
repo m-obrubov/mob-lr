@@ -6,13 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Акселерометр"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/accXcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="X" />
+
+        <TextView
+            android:id="@+id/accYcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Y" />
+
+        <TextView
+            android:id="@+id/accZcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z" />
+
+        <TextView
+            android:id="@+id/magnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Магнитный сенсор" />
+
+        <TextView
+            android:id="@+id/magnetXcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="X" />
+
+        <TextView
+            android:id="@+id/magnetYcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Y" />
+
+        <TextView
+            android:id="@+id/magnetZcoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z" />
+
+        <TextView
+            android:id="@+id/proximity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Приближение" />
+
+        <TextView
+            android:id="@+id/proximitySensorData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Освещенность" />
+
+        <TextView
+            android:id="@+id/lightSensorData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
