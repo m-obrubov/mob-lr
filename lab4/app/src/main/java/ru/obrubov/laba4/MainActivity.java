@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView Zrotation;
     TextView side;
 
-    ImageView imageView;
-
     SensorManager sensorManager;
     Sensor accSensor;
     Sensor magnetSensor;
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         light = findViewById(R.id.lightSensorData);
         Zrotation = findViewById(R.id.ZrotationValue);
         side = findViewById(R.id.sideText);
-        imageView = findViewById(R.id.imageView);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         if(sensorManager != null) {
@@ -91,10 +88,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         double zDegrees = Math.toDegrees(orientationData[0]);
         Zrotation.setText(String.valueOf(zDegrees));
 
-        boolean isNorth = zDegrees > -45 && zDegrees < 45;
-        boolean isEast = zDegrees > 45 && zDegrees < 135;
-        boolean isSouth = (zDegrees >= -180 && zDegrees < -135) || (zDegrees > 135 && zDegrees <= 180);
-        boolean isWest = zDegrees > -135 && zDegrees < -45;
+        boolean isSouth = zDegrees > -45 && zDegrees < 45;
+        boolean isWest = zDegrees > 45 && zDegrees < 135;
+        boolean isNorth = (zDegrees >= -180 && zDegrees < -135) || (zDegrees > 135 && zDegrees <= 180);
+        boolean isEast = zDegrees > -135 && zDegrees < -45;
 
         if(isNorth) {
             side.setText("Север");
@@ -105,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else if (isWest) {
             side.setText("Запад");
         }
-        imageView.animate().x(orientationData[0]).y(orientationData[1]).start();
     }
 
     @Override
