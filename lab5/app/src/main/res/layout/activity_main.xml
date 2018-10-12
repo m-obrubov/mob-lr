@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Введите имя" />
+                android:hint="Введите имя" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Введите email" />
+                android:hint="Введите email" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -65,18 +65,21 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onClickCreate"
             android:text="Создать" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onClickRead"
             android:text="Вывести" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onClickClear"
             android:text="Очистить" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
