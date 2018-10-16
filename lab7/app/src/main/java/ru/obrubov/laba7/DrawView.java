@@ -3,27 +3,24 @@ package ru.obrubov.laba7;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 class DrawView extends SurfaceView {
     private static final int BACK_COLOR = Color.WHITE;
+    private static final int MAX_LINES = 30;
 
     private SurfaceHolder surfaceHolder;
-    private Random random;
     private Map<Integer, Finger> fingers;
+    private int linesCount;
 
     public DrawView(Context context) {
         super(context);
         surfaceHolder = getHolder();
-        random = new Random();
         fingers = new HashMap<>();
     }
 
@@ -37,6 +34,7 @@ class DrawView extends SurfaceView {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
                 fingers.put(pointerId, new Finger());
+                linesCount++;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_UP:
@@ -50,21 +48,26 @@ class DrawView extends SurfaceView {
 
     private void fillPointerCoords(MotionEvent event) {
         for(int pointerId : fingers.keySet()) {
-            Path path = fingers.get(pointerId).getPath();
-            if(path.isEmpty()) {
-                path.moveTo(event.getX(pointerId), event.getY(pointerId));
-            } else {
-                path.lineTo(event.getX(pointerId), event.getY(pointerId));
-            }
+            Line line = fingers.get(pointerId).getLine();
+            line.setNextCoordinates(event.getX(pointerId), event.getY(pointerId));
         }
     }
 
     private void paint() {
         Canvas canvas = surfaceHolder.lockCanvas();
+//        if(linesCount >= MAX_LINES) {
+//            canvas.drawColor(BACK_COLOR);
+//            linesCount = 0;
+//        }
         for(Finger drawFinger : fingers.values()) {
-            Path path = drawFinger.getPath();
-            if(path != null) {
-                canvas.drawPath(path, drawFinger.getPaint());
+            Line line = drawFinger.getLine();
+            if(line.isReadyToDraw()) {
+                canvas.drawLine(
+                        line.getStartX(),
+                        line.getStartY(),
+                        line.getFinishX(),
+                        line.getFinishY(),
+                        drawFinger.getPaint());
             }
         }
         surfaceHolder.unlockCanvasAndPost(canvas);

@@ -2,17 +2,16 @@ package ru.obrubov.laba7;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 
 import java.util.Objects;
 import java.util.Random;
 
 public class Finger {
-    private Path path;
+    private Line line;
     private Paint paint;
 
     Finger() {
-        this.path = new Path();
+        this.line = new Line();
         Random random = new Random();
         Paint paint = new Paint();
         paint.setStrokeWidth(10);
@@ -21,8 +20,8 @@ public class Finger {
         this.paint = paint;
     }
 
-    public Path getPath() {
-        return path;
+    public Line getLine() {
+        return line;
     }
 
     public Paint getPaint() {
@@ -34,12 +33,12 @@ public class Finger {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Finger finger = (Finger) o;
-        return Objects.equals(path, finger.path) &&
+        return Objects.equals(line, finger.line) &&
                 Objects.equals(paint, finger.paint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(path, paint);
+        return Objects.hash(line, paint);
     }
 }
