@@ -36,13 +36,15 @@ class DrawView extends SurfaceView {
                 fingers.put(pointerId, new Finger());
                 linesCount++;
                 break;
+            case MotionEvent.ACTION_MOVE:
+                fillPointerCoords(event);
+                paint();
+                break;
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_UP:
                 fingers.remove(pointerId);
                 break;
         }
-        fillPointerCoords(event);
-        paint();
         return true;
     }
 
