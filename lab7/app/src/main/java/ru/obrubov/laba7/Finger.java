@@ -2,16 +2,19 @@ package ru.obrubov.laba7;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class Finger {
-    private Line line;
+    private List<Point> points;
     private Paint paint;
 
     Finger() {
-        this.line = new Line();
+        this.points = new ArrayList<>();
         Random random = new Random();
         Paint paint = new Paint();
         paint.setStrokeWidth(10);
@@ -20,12 +23,25 @@ public class Finger {
         this.paint = paint;
     }
 
-    public Line getLine() {
-        return line;
+    public List<Point> getPoints() {
+        return points;
     }
 
     public Paint getPaint() {
         return paint;
+    }
+
+    public void setNextPoint(float nextX, float nextY) {
+        int intNextX = (int) nextX;
+        int intNextY = (int) nextY;
+        if(points.size() > 0 && points.get(points.size() - 1).equals(intNextX, intNextY)) {
+            return;
+        }
+        points.add(new Point(intNextX, intNextY));
+    }
+
+    public boolean isReadyToDraw() {
+        return points.size() >= 2;
     }
 
     @Override
@@ -33,12 +49,12 @@ public class Finger {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Finger finger = (Finger) o;
-        return Objects.equals(line, finger.line) &&
+        return Objects.equals(points, finger.points) &&
                 Objects.equals(paint, finger.paint);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(line, paint);
+        return Objects.hash(points, paint);
     }
 }

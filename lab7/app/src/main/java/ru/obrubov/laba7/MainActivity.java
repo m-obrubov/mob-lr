@@ -7,12 +7,9 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    DrawView drawView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        drawView = new DrawView(this);
-        setContentView(drawView);
+        setContentView(R.layout.activity_main);
     }
 }
