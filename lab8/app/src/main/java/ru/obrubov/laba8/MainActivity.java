@@ -1,6 +1,7 @@
 package ru.obrubov.laba8;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -23,13 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private SurfaceHolder surfaceHolder;
     private SurfaceView preview;
 
+    File photoFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         preview = findViewById(R.id.surfaceView);
 
+        File pictures = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        photoFile = new File(pictures, "myphoto.jpg");
         surfaceHolder = preview.getHolder();
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
@@ -102,23 +107,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSavePicture(View view) {
-        camera.takePicture(null, null, null, new PictureCallback() {
+        camera.takePicture(null, null, new PictureCallback() {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
-                try
-                {
-                    File pictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                    File photoFile = new File(pictures, String.format("%d.png", System.currentTimeMillis()));
-                    FileOutputStream os = new FileOutputStream(photoFile);
-                    os.write(data);
-                    os.close();
-                }
-                catch (Exception ignored)
-                {
+                try(FileOutputStream fos = new FileOutputStream(photoFile)) {
+                    fos.write(data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    camera.startPreview();
                 }
 
-                // после того, как снимок сделан, показ превью отключается. необходимо включить его
-                camera.startPreview();
+                try(FileInputStream fis = new FileInputStream(photoFile)) {
+                    fis.read(data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
