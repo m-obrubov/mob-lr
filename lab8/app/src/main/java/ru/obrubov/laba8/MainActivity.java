@@ -1,11 +1,5 @@
 package ru.obrubov.laba8;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
@@ -16,15 +10,17 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private SurfaceView preview;
 
-    File photoFile;
+    private File pictures;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         preview = findViewById(R.id.surfaceView);
 
-        File pictures = Environment
+        pictures = Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        photoFile = new File(pictures, "myphoto.jpg");
         surfaceHolder = preview.getHolder();
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
@@ -110,18 +105,14 @@ public class MainActivity extends AppCompatActivity {
         camera.takePicture(null, null, new PictureCallback() {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
+                String photoFilename = String.valueOf(System.currentTimeMillis()) + ".jpg";
+                File photoFile = new File(pictures, photoFilename);
                 try(FileOutputStream fos = new FileOutputStream(photoFile)) {
                     fos.write(data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
                     camera.startPreview();
-                }
-
-                try(FileInputStream fis = new FileInputStream(photoFile)) {
-                    fis.read(data);
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         });
